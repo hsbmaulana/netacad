@@ -1,8 +1,8 @@
 <h1 align="center">Cisco Networking Academy</h1>
 
-Just tip and trick about how i passed the following lab challenges.
+Just tip and trick about how i passed the following lab challenges and got its certs.
 
-![challenge](https://user-images.githubusercontent.com/38196994/136546679-67c5fe89-2928-4e4d-bb3d-2dffc40b1807.png)
+![Challenge](https://user-images.githubusercontent.com/38196994/136650553-f36f78db-6aca-4b60-85ef-b45641be8555.png)
 
 Author
 ---
