@@ -12,7 +12,7 @@
 
 `curl -L https://raw.githubusercontent.com/hsbmaulana/netacad/main/B/script -o ./script && chmod +x ./script`
 
-`~/execute`
+`./script`
 
 Author
 ---
