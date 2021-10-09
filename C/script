@@ -1,0 +1,12 @@
+#!/bin/bash
+
+extension="$1"
+source=$(echo "$2" | sed -E 's/[\/]+$//')
+destination=$(echo "$3" | sed -E 's/[\/]+$//')
+backup='~/backup'
+
+if [ ! "$extension" -o ! "$source" -o ! "$destination" -o ! -d "$source" -o ! -d "$destination" ]; then echo "Usage: $0 <extension> <source> <destination>"; exit 1; fi
+
+find $source -type f -iname "*.$extension" -exec tar -cf "$destination/$extension.tar" {} + 2> /dev/null
+if [ -d "$backup" ]; then tar -xf "$destination/$extension.tar" -C $backup; fi
+tar -tvf "$destination/$extension.tar"
