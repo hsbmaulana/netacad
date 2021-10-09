@@ -1,0 +1,58 @@
+#!/bin/bash
+
+while [ true ]
+do
+
+    echo -e '\nSelect one of the command :\n'
+    echo 'list) List pair user and group.'
+    echo 'add) Add pair a new user and a group.'
+    echo 'remove) Remove a user or a group.'
+    echo 'exit) Exit this shell session.'
+    echo
+
+    read -p "> " cmd
+
+    case "$cmd" in
+
+        'list')
+            getent passwd | fgrep 'staff_'
+            ;;
+
+        'add')
+            read -p 'What is name of a new user? ' user
+            read -p 'What is name of a new group? ' group
+
+            username="$user"
+            groupname="staff_$group"
+            homename="/home_$user/"
+
+            if ! getent passwd $username && ! getent group $groupname
+            then
+                groupadd $groupname
+                useradd -g $groupname -s /bin/bash -m -d $homename $username && passwd $username
+
+                chown $username:$groupname $homename
+                chmod 1770 $homename
+            else
+                echo 'Must a non-existed user group, and can only be a lowercase alphabetic.' 1>&2
+            fi
+            ;;
+
+        'remove')
+            read -p 'What is name of the user? ' user
+            read -p 'What is name of the group? ' group
+
+            username="$user"
+            groupname="staff_$group"
+
+            userdel -r $username
+            groupdel $groupname
+            ;;
+
+        'exit')
+            exit 1
+            ;;
+
+    esac
+
+done
